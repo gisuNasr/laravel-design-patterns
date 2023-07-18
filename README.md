@@ -1,4 +1,4 @@
-Laravel Developer's Guide - Important Design Patterns
+#[Laravel Developer's Guide - Important Design Patterns]
 
 Welcome to the Laravel Backend Developer's Guide! This document aims to provide you with essential design patterns commonly used in Laravel development. Understanding and applying these patterns will enhance the scalability, maintainability, and overall quality of your Laravel applications.
 I developed each of them in diffrent branches by their names.
@@ -12,7 +12,7 @@ gisoo
 
 
 
-1. Repository Pattern
+##[1. Repository Pattern]
 The Repository Pattern is used to separate the data access logic from the application's business logic. It provides a centralized place to handle data retrieval and storage operations for database entities. Implementing this pattern makes it easier to switch between different data sources, such as databases or external APIs, without affecting the rest of the application.
 
 <!-- 2. Service Layer Pattern
