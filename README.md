@@ -1,9 +1,12 @@
 # Laravel Developer's Guide - Important Design Patterns
 
-Welcome to the Laravel Backend Developer's Guide! This document aims to provide you with essential design patterns commonly used in Laravel development. Understanding and applying these patterns will enhance the scalability, maintainability, and overall quality of your Laravel applications.
-I developed each of them in diffrent branches by their names.
-Feel free to add, modify, or expand upon these design patterns based on your project's requirements. Happy coding, and I hope these patterns enhance the quality of your Laravel applications! If you have any questions or need further recommendations, feel free to ask.
-Remember to customize the document with your own name or any additional patterns that may be relevant to your specific projects. 
+Hello there, fellow Laravel Backend Developer! Welcome to your ultimate guide on essential design patterns for Laravel development. 🚀 I'll be writing simple exmaple of each pattern in laravel application.These patterns will level up your apps' scalability, maintainability, and overall awesomeness!
+
+I've got great news! Each pattern has its own branch, neatly organized for you. You can play around, add your magic touch, or even create new branches with patterns tailor-made for your project needs.
+
+So, let's embark on this coding adventure together! Feel free to dive in, explore, and make these patterns truly yours. If you have any questions or need more cool recommendations, don't hesitate to ask.
+
+Remember, this is your playground. Customize the document with your name and unleash your creativity! Happy coding, and may these patterns bring pure Laravel joy to your applications! 🎉🌟
 
 contact : gisoonasrollahi@gmail.com
 
@@ -13,3 +16,9 @@ gisoo
 ### the listed patterns below are elaborated on this repo
 
 - Repository Pattern
+- Adapter Pattern
+- Builder Pattern
+- Factory Pattern
+- Mediator Pattern
+- Singleton Pattern
+- Strategy Pattern
