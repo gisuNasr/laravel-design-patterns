@@ -3,12 +3,11 @@
 namespace App\Repositories\Contracts;
 
 use App\Models\User;
-use Illuminate\Pagination\LengthAwarePaginator;
 
-interface UserRepositoryInterface
-{
-    public function list() : LengthAwarePaginator;
-    public function showById($id) : User;
-    public function storeOrUpdate( $id = null, $collection = [] );
-    public function deleteById($object);
+interface UserRepositoryInterface {
+    public function getAllUsers();
+    public function getUserById($id);
+    public function createUser(array $userData);
+    public function updateUser($id, array $userData);
+    public function deleteUser($id);
 }
