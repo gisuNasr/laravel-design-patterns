@@ -1,5 +1,6 @@
 <?php
-namespace App\Repositories\MySQL;
+// MySQLUserRepository.php
+namespace App\Repositories\Strategies;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
 

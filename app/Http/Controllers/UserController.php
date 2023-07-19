@@ -1,54 +1,31 @@
 <?php
+
+// UserController.php
 namespace App\Http\Controllers;
 
-use App\Repositories\Adapters\UserAdapter;
-use App\Repositories\MySQL\MySQLUserRepository;
-use App\Repositories\API\APIUserRepository;
+use App\Repositories\UserContext;
+use App\Repositories\Strategies\MySQLUserRepository;
+use App\Repositories\Strategies\MongoDBUserRepository;
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    private $userAdapter;
-
-    public function __construct()
-    {
-        // Create an instance of MySQLUserRepository or APIUserRepository
-        $mysqlUserRepository = new MySQLUserRepository();
-
-        // Pass MySQLUserRepository to the UserAdapter constructor
-        $this->userAdapter = new UserAdapter($mysqlUserRepository);
-    }
-
-
+    use ApiResponse;
     public function index()
     {
-        $users = $this->userAdapter->getAllUsers();
-        return view('users.index', ['users' => $users]);
+        // Use MySQL strategy
+        $userRepository = new MySQLUserRepository();
+        $userContext = new UserContext($userRepository);
+        $users = $userContext->getAllUsers();
+
+        // Or use MongoDB strategy
+        // $userRepository = new MongoDBUserRepository();
+        // $userContext = new UserContext($userRepository);
+        // $users = $userContext->getAllUsers();
+
+        return $this->successResponse($users,'user list fetched successfully');
     }
 
-    public function show($id)
-    {
-        $user = $this->userAdapter->getUserById($id);
-        return view('users.show', ['user' => $user]);
-    }
 
-    public function store(Request $request)
-    {
-        $userData = $request->all();
-        $this->userAdapter->createUser($userData);
-        return redirect()->route('users.index');
-    }
-
-    public function update(Request $request, $id)
-    {
-        $userData = $request->all();
-        $this->userAdapter->updateUser($id, $userData);
-        return redirect()->route('users.show', ['user' => $id]);
-    }
-
-    public function destroy($id)
-    {
-        $this->userAdapter->deleteUser($id);
-        return redirect()->route('users.index');
-    }
 }
