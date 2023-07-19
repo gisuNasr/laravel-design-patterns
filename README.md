@@ -1,7 +1,9 @@
-# About factory design pattern
+# About singleton design pattern
 
-Imagine you have this cool logistics management app that started with handling only truck transportation. As your app gains popularity, sea transportation companies are reaching out to you, asking to add sea logistics to your app.
+Hey there! Let's talk about the Singleton design pattern - it's like having a VIP pass for classes! With this pattern, you ensure that a class has only one special instance that everyone can access globally.
 
-To make this happen without causing chaos in your code, the Factory Method pattern comes to the rescue! Instead of directly creating objects with the new operator, you create a special factory method. It's like having a magic factory where you can request different types of transportation objects without messing up your existing Truck class. These objects, known as products, allow you to smoothly manage various transportation types and keep your app growing seamlessly!
+In our case, we use the Singleton pattern to make sure we have just one UserRepository instance throughout our awesome app. Meet the UserRepositorySingleton, the mastermind behind this magic! It's responsible for creating and taking care of our UserRepository. So, no matter where we are in the app, we're always dealing with the same UserRepository instance.
 
-checkout the app folder and let me know your amazing ideas
+And guess what? This not only makes things faster but also keeps our data consistent, making it a super useful pattern for all kinds of scenarios! It's like having a trusty sidekick that's always there when you need it! 🦸‍♀️🦸‍♂️
+
+checkout the app/Repositories folder and let me know your amazing ideas
