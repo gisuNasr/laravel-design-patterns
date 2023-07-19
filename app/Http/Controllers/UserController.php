@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 use App\Repositories\Adapters\UserAdapter;
 use App\Repositories\MySQL\MySQLUserRepository;
 use App\Repositories\API\APIUserRepository;
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    use ApiResponse;
     private $userAdapter;
 
     public function __construct()
@@ -23,32 +25,33 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userAdapter->getAllUsers();
-        return view('users.index', ['users' => $users]);
+        return $this->successResponse($users,'user list fetched successfully');
     }
 
     public function show($id)
     {
         $user = $this->userAdapter->getUserById($id);
-        return view('users.show', ['user' => $user]);
+        return $this->successResponse($user,'user info fetched successfully');
+
     }
 
     public function store(Request $request)
     {
         $userData = $request->all();
         $this->userAdapter->createUser($userData);
-        return redirect()->route('users.index');
+        return $this->successResponse([],'user created successfully');
     }
 
     public function update(Request $request, $id)
     {
         $userData = $request->all();
         $this->userAdapter->updateUser($id, $userData);
-        return redirect()->route('users.show', ['user' => $id]);
+        return $this->successResponse([],'user updated successfully');
     }
 
     public function destroy($id)
     {
         $this->userAdapter->deleteUser($id);
-        return redirect()->route('users.index');
+        return $this->successResponse([],'user deleted successfully');
     }
 }
