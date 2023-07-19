@@ -2,23 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\UserRepositorySingleton;
+use App\Repositories\UserRepositoryBuilder;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     use ApiResponse;
-    private $userRepository;
-
-    public function __construct()
+    public function index(Request $request)
     {
-        $this->userRepository = UserRepositorySingleton::getInstance();
-    }
+        $userRepositoryBuilder = new UserRepositoryBuilder();
 
-    public function index()
-    {
-        $users = $this->userRepository->getAllUsers();
+        if ($request->has('name')) {
+            $userRepositoryBuilder->whereName($request->input('name'));
+        }
+
+        if ($request->has('email')) {
+            $userRepositoryBuilder->whereEmail($request->input('email'));
+        }
+
+        $users = $userRepositoryBuilder->get();
+
         return $this->successResponse($users,'user list fetched successfully');
     }
 

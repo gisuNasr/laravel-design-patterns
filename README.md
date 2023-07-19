@@ -1,9 +1,9 @@
-# About singleton design pattern
+# About builder design pattern
 
-Hey there! Let's talk about the Singleton design pattern - it's like having a VIP pass for classes! With this pattern, you ensure that a class has only one special instance that everyone can access globally.
+The Builder pattern comes to the rescue when you have a class that has nifty internal methods, which modify the behavior of the class object and return the object itself.
 
-In our case, we use the Singleton pattern to make sure we have just one UserRepository instance throughout our awesome app. Meet the UserRepositorySingleton, the mastermind behind this magic! It's responsible for creating and taking care of our UserRepository. So, no matter where we are in the app, we're always dealing with the same UserRepository instance.
+In simpler terms, it's like playing with Lego blocks! You can use the class and chain its methods together, adding awesome features one after the other, just like building your dream Lego creation piece by piece.
 
-And guess what? This not only makes things faster but also keeps our data consistent, making it a super useful pattern for all kinds of scenarios! It's like having a trusty sidekick that's always there when you need it! 🦸‍♀️🦸‍♂️
+So, with the Builder pattern, you have the power to customize your class object step-by-step, making it super flexible and easy to use. It's like having a magical toolkit that lets you create the perfect object tailored to your needs! 🚀🧱
 
-checkout the app/Repositories folder and let me know your amazing ideas
+checkout the app folder and let me know your amazing ideas
