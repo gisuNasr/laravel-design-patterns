@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\User;
-use App\Repository\UserRepositoryInterface;
-use Illuminate\Support\Facades\Hash;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
 {

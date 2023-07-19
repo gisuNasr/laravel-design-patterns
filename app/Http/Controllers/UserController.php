@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
-use Illuminate\Http\Request;
-use App\Repository\UserRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Traits\ApiResponse;
 
 class UserController extends Controller
