@@ -6,12 +6,16 @@ I've got great news! Each pattern has its own branch, neatly organized for you. 
 
 So, let's embark on this coding adventure together! Feel free to dive in, explore, and make these patterns truly yours. If you have any questions or need more cool recommendations, don't hesitate to ask.
 
+change branches too see all the patterns.
+<img width="330" alt="Screen Shot 1402-05-06 at 23 10 17" src="https://github.com/gisooNasr/laravel-design-patterns/assets/113020788/8718102c-f3f2-4f0e-9522-94c953c241ce">
+
 Remember, this is your playground. Customize the document with your name and unleash your creativity! Happy coding, and may these patterns bring pure Laravel joy to your applications! 🎉🌟
 
 contact : gisoonasrollahi@gmail.com
 
 Best regards,
 gisoo
+
 
 ### the listed patterns below are elaborated on this repo
 
