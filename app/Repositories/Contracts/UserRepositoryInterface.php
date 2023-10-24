@@ -7,8 +7,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 interface UserRepositoryInterface
 {
-    public function list() : LengthAwarePaginator;
-    public function showById($id) : User;
-    public function storeOrUpdate( $id = null, $collection = [] );
-    public function deleteById($object);
+    public function list() : ?LengthAwarePaginator;
+    public function showById(int $id) : ?User;
+    public function store(array $data): ?User;
+    public function update(int $id,array $data): ?User;
+    public function deleteById(int $id);
 }

@@ -10,49 +10,64 @@ use App\Traits\ApiResponse;
 class UserController extends Controller
 {
     use ApiResponse;
-    protected $user;
 
-    public function __construct(UserRepositoryInterface $user)
+    protected $repository;
+
+    public function __construct(UserRepositoryInterface $repository)
     {
-        $this->user = $user;
+        $this->repository = $repository;
     }
 
     public function index()
     {
-        $users = $this->user->list();
+        $response = $this->repository->list();
 
-        return $this->successResponse($users,"User list fetched successfully");
+        if (is_null($response)) {
+            return $this->errorResponse([],"Server Error!!! Something went wrong while fetching user list");
+        }
+        return $this->successResponse($response, "User list fetched successfully");
     }
+
 
     public function store(UserCreateRequest $request)
     {
-
-        $data = $request->only(['name','email','password']);
-        $this->user->storeOrUpdate($id = null, $data);
-
-        return $this->successResponse([], "User added successfully!");
+        $data = $request->only(['name', 'email', 'password']);
+        $response=$this->repository->store($data);
+        if (is_null($response)){
+            return $this->errorResponse([], "Something went wrong!");
+        }
+        return $this->successResponse($response, "User added successfully!");
     }
 
     public function show($id)
     {
-        $user = $this->user->showById($id);
+        $response = $this->repository->showById($id);
 
-        return $this->successResponse($user, "User fetched successfully!");
+        if (is_null($response)) {
+            return $this->errorResponse([],"User NotFound!",404);
+        }
+        return $this->successResponse($response, "User fetched successfully");
     }
 
     public function update(UserUpdateRequest $request, $id)
     {
 
-        $data = $request->only(['name','email']);
-        $this->user->storeOrUpdate($id, $data);
+        $data = $request->only(['name', 'email', 'password']);
+        $response=$this->repository->update($id, $data);
 
-        return $this->successResponse([], "User updated successfully!");
+        if (is_null($response)){
+            return $this->errorResponse([],"User NotFound!");
+        }
+        return $this->successResponse($response, "User updated successfully!");
     }
 
     public function destroy($id)
     {
-        $this->user->deleteById($id);
-        return $this->successResponse([], "User deleted successfully!");
+        $response=$this->repository->deleteById($id);
 
+        if (is_null($response)) {
+            return $this->errorResponse([],"User NotFound!");
+        }
+        return $this->successResponse([], "User deleted successfully!");
     }
 }

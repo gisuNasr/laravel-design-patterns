@@ -6,45 +6,78 @@ use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 class UserRepository implements UserRepositoryInterface
 {
     protected $user = null;
 
-    public function list() : LengthAwarePaginator
+    public function list() :?LengthAwarePaginator
     {
-        return User::paginate(10);
+        try {
+            $users=User::paginate(10);
+            return $users;
+        }catch (QueryException $e){
+            Log::error("Error while fetching user list: " . $e->getMessage());
+            return null;
+        }
     }
 
-    public function showById($id) : User
+    public function showById(int $id) : ?User
     {
-        return User::findOrFail($id);
+        try {
+            return User::find($id);
+        }catch (QueryException $e){
+            Log::error("Error while fetching the user: " . $e->getMessage());
+            return null;
+        }
     }
 
-    public function storeOrUpdate($id = null, $data = [] )
+    public function store(array $data): ?User
     {
-        if(is_null($id)) {
+        try {
             $user = new User;
             $user->name = $data['name'];
             $user->email = $data['email'];
-            $user->password = Hash::make('password');
+            $user->password = Hash::make($data['password']);
             $user->save();
 
             return $user;
+        } catch (\Exception $e) {
+            Log::error("Error while storing user: " . $e->getMessage());
+            return null;
         }
+    }
 
-        $user = User::findOrFail($id);
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = Hash::make('password');
-        $user->save();
+    public function update(int $id, array $data): ?User
+    {
+        try {
+            $user = User::findOrFail($id);
+            $user->name = $data['name'];
+            $user->email = $data['email'];
 
-        return $user;
+            if (isset($data['password'])) {
+                $user->password = Hash::make($data['password']);
+            }
+            $user->save();
+
+            return $user;
+        } catch (\Exception $e) {
+            Log::error("Error while updating user: " . $e->getMessage());
+            return null;
+        }
     }
 
     public function deleteById($id)
     {
-        $user=User::findOrFail($id);
-        return $user->delete();
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return true;
+        } catch (\Exception $e) {
+            Log::error("Error while deleting user: " . $e->getMessage());
+            return null;
+        }
     }
 }
