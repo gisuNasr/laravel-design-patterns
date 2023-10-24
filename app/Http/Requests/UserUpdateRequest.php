@@ -25,7 +25,8 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|unique:users,email,' . auth()->id()
+            'email' => 'required|unique:users,email,' . auth()->id(),
+            'password' => 'nullable|min:6',
         ];
     }
 }
